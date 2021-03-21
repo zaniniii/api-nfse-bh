@@ -1,7 +1,7 @@
 # Micro-serviço NFS-e v1.0.0
 Micro-serviço responsável pela comunicação com o webservice da prefeitura de BH para emissão e consulta de notas fiscais.
 
-# Atenção!
+## Atenção!
 Esse é um micro-serviço desenvolvido com único e exclusivo, intuito de facilitar a comunicação com webservice da prefeitura.
 
 ## Tecnologias
@@ -62,6 +62,9 @@ Será necessário informar o caminho do certificado no arquivo .env através da 
 Utilize o Postman para testar suas chamadas. [https://www.getpostman.com/](https://www.getpostman.com/).
 
 ## Contribuidores
-* Luiz Carlos Zanini <zanini@za9.com.br>
+* Luiz Carlos Zanini - <zanini@za9.com.br>
 
+<br/>
 
+#### Caso eu tenha te ajudado:
+[<img src="https://za9.com.br/assets/img/cafezin.png" width="450px" />](https://nubank.com.br/pagar/179v2u/aCol8TuQus)
