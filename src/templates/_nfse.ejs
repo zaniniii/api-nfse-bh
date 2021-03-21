@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFS-e</title>
+</head>
+
+<style>
+  table {
+    width: 510px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 7pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #444;
+  }
+
+  td,
+  th {
+    word-break: normal;
+    border: 1px solid #888;
+    padding: 3px 6px;
+  }
+
+  th,
+  b {
+    font-weight: bolder;
+    color: #000;
+  }
+
+  p {
+    font-size: 7pt;
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .msg {
+    width: 510px;
+    padding: 5px 0;
+    background-color: rgb(228, 92, 92);
+    color: #fff;
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 5px;
+    font-size: 8pt;
+  }
+</style>
+
+<body>
+
+  <!-- Caso seja Gerado a nota em um ambiente de teste Apresenta uma mensagem -->
+  <% if(process.env.API_MODE=="2" ){%>
+    <div class="msg">NFS-e gerada em ambiente de teste. <strong>NÃO TEM VALOR JURÍDICO NEM FISCAL</strong> .</div>
+    <%}%>
+
+      <table>
+        <tr>
+          <th colspan="6"><strong>NFS-e NOTA FISCAL DE SERVIÇOS ELETRÔNICA</strong></th>
+        </tr>
+        <tr>
+          <td>Número RPS:</td>
+          <td><b>
+              <%=nfse.IdentificacaoRps.Numero%>
+            </b></td>
+          <td>Série RPS:</td>
+          <td><b>
+              <%=nfse.IdentificacaoRps.Serie%>
+            </b></td>
+          <td>Número NFS-e</td>
+          <td><b>
+              <%=nfse.Numero%>
+            </b></td>
+        </tr>
+        <tr>
+          <td>Data Emissão:</td>
+          <td><b>
+              <%=nfse.DataEmissao%>
+            </b></td>
+          <td>Tipo Doc.:</td>
+          <td><b>RPS</b></td>
+          <td>Cód. Verificação</td>
+          <td><b>
+              <%=nfse.CodigoVerificacao%>
+            </b></td>
+        </tr>
+        <tr>
+          <td>Munic. Serviço:</td>
+          <td colspan="5">Belo Horizonte</td>
+        </tr>
+        <tr>
+          <td>Nat. Operação</td>
+          <td colspan="5">Tributação no Município</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th colspan="6">PRESTADOR DOS SERVIÇOS</th>
+        </tr>
+        <tr>
+          <td>CPF/CNPJ:</td>
+          <td><b>
+              <%=nfse.PrestadorServico.IdentificacaoPrestador.Cnpj%>
+            </b></td>
+          <td>Insc. Municipal</td>
+          <td><b>
+              <%=nfse.PrestadorServico.IdentificacaoPrestador.InscricaoMunicipal%>
+            </b></td>
+          <td>Município</td>
+          <td><b>
+              <%=nfse.PrestadorServico.Endereco.Municipio.municipio%> / <%=nfse.PrestadorServico.Endereco.Municipio.estado%>
+            </b></td>
+        </tr>
+        <tr>
+          <td>Razão Social:</td>
+          <td colspan="5">
+            <%=nfse.PrestadorServico.RazaoSocial%>
+          </td>
+        </tr>
+        <tr>
+          <td>Endereço:</td>
+          <td colspan="5">
+            <%=nfse.PrestadorServico.Endereco.Endereco%>, <%=nfse.PrestadorServico.Endereco.Numero%> - <%=nfse.PrestadorServico.Endereco.Complemento%> - <%=nfse.PrestadorServico.Endereco.Bairro%> - <%=nfse.PrestadorServico.Endereco.Cep%>
+          </td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th colspan="6"><strong>TOMADOR DOS SERVIÇOS</strong></th>
+        </tr>
+        <tr>
+          <td>CPF/CNPJ:</td>
+          <td><b>
+              <%=nfse.TomadorServico.IdentificacaoTomador.CpfCnpj.Cnpj%>
+            </b></td>
+          <td>Insc. Municipal</td>
+          <td><b>
+              <%=nfse.TomadorServico.IdentificacaoTomador.InscricaoMunicipal%>
+            </b></td>
+          <td>Município</td>
+          <td><b>
+              <%=nfse.TomadorServico.Endereco.Municipio.municipio%> / <%=nfse.TomadorServico.Endereco.Municipio.estado%>
+            </b></td>
+        </tr>
+        <tr>
+          <td>Razão Social:</td>
+          <td colspan="5">
+            <%=nfse.TomadorServico.RazaoSocial%>
+          </td>
+        </tr>
+        <tr>
+          <td>Endereço:</td>
+          <td colspan="5">
+            <%=nfse.TomadorServico.Endereco.Endereco%>, <%=nfse.TomadorServico.Endereco.Numero%> - <%=nfse.TomadorServico.Endereco.Complemento%> - <%=nfse.TomadorServico.Endereco.Bairro%> - <%=nfse.TomadorServico.Endereco.Cep%>
+          </td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th colspan="7">DISCRIMINAÇÃO DOS SERVIÇOS</th>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <%=nfse.Servico.Discriminacao%>
+          </td>
+        </tr>
+        <tr>
+          <td>Item Lista Serviço:</td>
+          <td><b>
+              <%=nfse.Servico.ItemListaServico%>
+            </b></td>
+          <td>Cod. Trib. Município:</td>
+          <td><b>
+              <%=nfse.Servico.CodigoTributacaoMunicipio%>
+            </b></td>
+          <td>CNAE:</td>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+          <td>PIS (0,65%):<br><b>
+              <%=nfse.Servico.Valores.ValorPis%>
+            </b></td>
+          <td>CONFINS(3,00%):<br><b>
+              <%=nfse.Servico.Valores.ValorCofins%>
+            </b></td>
+          <td>INSS(0,00%):<br><b>
+              <%=nfse.Servico.Valores.ValorInss%>
+            </b></td>
+          <td>IR(1,50%):<br><b>
+              <%=nfse.Servico.Valores.ValorIr%>
+            </b></td>
+          <td>CSLL (0,00%):<br><b>
+              <%=nfse.Servico.Valores.ValorCsll%>
+            </b></td>
+          <td>Descontos:<br><b>
+              <%=nfse.Servico.Valores.DescontoIncondicionado%>
+            </b></td>
+          <td>Desc. Incond: <br><b>
+              <%=nfse.Servico.Valores.DescontoCondicionado%>
+            </b></td>
+        </tr>
+        <tr>
+          <td colspan="7" align="center"><b>TOTAL DA NOTA: R$3.275,00</b></td>
+        </tr>
+        <tr>
+          <td>Vlr. Retensões: <br><b>
+              <%=nfse.Servico.Valores.OutrasRetencoes%>
+            </b><br></td>
+          <td>Vlr. Deduções:<br><b>
+              <%=nfse.Servico.Valores.ValorDeducoes%>
+            </b><br></td>
+          <td>Base Cálculo:<br><b>
+              <%=nfse.Servico.Valores.BaseCalculo%>
+            </b><br></td>
+          <td>Alíq. ISS: <br><b>
+              <%=nfse.Servico.Valores.Aliquota%>%
+            </b></td>
+          <td>Valor ISS:<br><b>
+              <%=nfse.Servico.Valores.ValorIss%>
+            </b><br></td>
+          <td>ISS RETIDO:<br><b>
+              <%=nfse.Servico.Valores.IssRetido%>
+            </b></td>
+          <td>Vlr. Líquido:<br><b>
+              <%=nfse.Servico.Valores.ValorLiquidoNfse%>
+            </b></td>
+        </tr>
+        <tr>
+          <td colspan="7" align="center"><b>OUTRAS INFORMAÇÕES</b></td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <p>Prefeitura Municipal de Belo Horizonte - Secretaria Municipal de Finanças<br>Rua Espírito Santo, 605 - 2ª Andar - Centro - CEP:30160-919 - Belo Horizonte - MG<br>Tel: 31.3277-4000 Fax.: 31.3224-3099<br>E-mail: nfse@pbh.gov.br</p>
+            <p><b>Prezado Cliente</b><br>
+              Esta será a Nota Fiscal de Serviços Eletrônica da <%=process.env.COMPANY_NAME%>. Caso queiram imprimi-la no formato da Prefeitura Municipal de Belo Horizonte, acesse o endereço: https://bhissdigital.pbh.gov.br/nfse/pages/consultaNFS-e_cidadao.jsf<br></p>
+            <p><b>Atensiosamente</b><br>
+              <%=process.env.COMPANY_NAME%>
+            </p>
+          </td>
+        </tr>
+      </table>
+</body>
+
+</html>
